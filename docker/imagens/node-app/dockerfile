@@ -1,0 +1,5 @@
+FROM node:14
+COPY /app-exemplo/. /app-node
+WORKDIR /app-node
+RUN npm install
+ENTRYPOINT npm start
