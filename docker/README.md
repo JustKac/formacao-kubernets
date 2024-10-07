@@ -1,7 +1,5 @@
 # Comandos Docker
 
-Essa aula apresentou alguns comandos básicos do Docker, que são essenciais para gerenciar containers.
-
 ## Índice
 
 - [Listando Containers](#listando-containers)
@@ -11,6 +9,7 @@ Essa aula apresentou alguns comandos básicos do Docker, que são essenciais par
 - [Comandos Docker: Uma Visão Geral](#comandos-docker-uma-visão-geral)
 - [Dicas](#dicas)
 - [Próximos Passos](#próximos-passos)
+- [Comandos do Docker para gerenciar imagens e containers](#comandos-do-docker-para-gerenciar-imagens-e-containers)
 
 ## Listando Containers
 
@@ -116,92 +115,26 @@ docker port <container_id>
 docker rm <container_id> --force
 ```
 
---- 
-
-<!---
-Conteúdo extra
-
-Título: "Comandos do Docker para gerenciar imagens e containers"
-Seções:
-Visualizando imagens:
-docker images ou docker image ls: Lista todas as imagens baixadas no sistema.
-Exemplo: docker images
-Inspecionando imagens:
-docker inspect <IMAGE_ID>: Exibe informações detalhadas sobre uma imagem, incluindo camadas, tags, data de criação, etc.
-Exemplo: docker inspect f589ccde7957
-Visualizando o histórico de uma imagem:
-docker history <IMAGE_ID>: Mostra o histórico de uma imagem, incluindo as camadas e as instruções que foram usadas para criá-la.
-Exemplo: docker history f589ccde7957
-Criando um container a partir de uma imagem:
-docker run <IMAGE_NAME> <COMMAND>: Cria um container a partir de uma imagem e executa um comando dentro dele.
-Exemplo: docker run -it ubuntu bash
-Outras informações:
-Explique o conceito de camadas de uma imagem e como elas são reutilizadas para criar containers.
-Descreva a diferença entre imagens e containers.
-Mencione a importância da otimização de imagens para melhorar o desempenho dos containers.
-
 ---
 
-Criando sua primeira imagem Docker
-Essa aula te guiará na criação da sua primeira imagem Docker, utilizando uma aplicação Node como exemplo.
+## Comandos do Docker para gerenciar imagens e containers
 
-Pré-requisitos
-Docker instalado e configurado em sua máquina.
-Conhecimento básico sobre o funcionamento do Docker.
-Editor de texto de sua preferência (ex: Visual Studio Code).
-Criando o arquivo Dockerfile
-Crie um novo arquivo chamado Dockerfile na raiz do seu projeto.
-Defina a imagem base:
-css
-Copiar código
-FROM node:14
-Essa linha indica que você usará a imagem oficial do Node na versão 14 como base para sua imagem.
-Defina o diretório de trabalho:
-bash
-Copiar código
-WORKDIR /app-node
-Essa linha define /app-node como o diretório de trabalho padrão dentro do container.
-Copie os arquivos do seu projeto para o container:
-sql
-Copiar código
-COPY . .
-Essa linha copia todos os arquivos do seu diretório atual (onde está o Dockerfile) para o diretório /app-node dentro do container.
-Instale as dependências do seu projeto:
-undefined
-Copiar código
-RUN npm install
-Essa linha executa o comando npm install dentro do container para instalar as dependências do seu projeto.
-Defina o ponto de entrada do container:
-sql
-Copiar código
-ENTRYPOINT npm start
-Essa linha define o comando npm start como o ponto de entrada do container. Quando o container for iniciado, esse comando será executado.
-Criando a imagem
-Abra o terminal e navegue até o diretório do seu projeto.
-Execute o comando docker build para criar a imagem:
-bash
-Copiar código
-docker build -t danielartini/app-node:1 .
--t danielartini/app-node:1 define o nome da imagem como danielartini/app-node e a tag como 1.
-. indica que o Dockerfile está no diretório atual.
-Iniciando um container
-Execute o comando docker run para iniciar um container a partir da imagem criada:
-bash
-Copiar código
-docker run -d -p 8081:3000 danielartini/app-node:1.0
--d inicia o container em modo detached.
--p 8081:3000 mapeia a porta 8081 do seu host para a porta 3000 do container.
-danielartini/app-node:1.0 especifica a imagem e a tag a serem utilizadas.
-Acessando a aplicação
-Após iniciar o container, você poderá acessar sua aplicação no navegador através do endereço localhost:8081.
+### Visualizando Imagens
 
-Próximos passos
-Explore a documentação do Docker para aprender mais sobre as instruções do Dockerfile.
-Experimente criar imagens para outros tipos de aplicações.
-Utilize as instruções ENV, EXPOSE, VOLUME e LABEL para personalizar suas imagens.
+- `docker images` ou `docker image ls`: Lista todas as imagens baixadas no sistema.
+  - Exemplo: `docker images`
 
----
+### Inspecionando Imagens
 
+- `docker inspect <IMAGE_ID>`: Exibe informações detalhadas sobre uma imagem, incluindo camadas, tags, data de criação, etc.
+  - Exemplo: `docker inspect f589ccde7957`
 
+### Visualizando o Histórico de uma Imagem
 
--->
+- `docker history <IMAGE_ID>`: Mostra o histórico de uma imagem, incluindo as camadas e as instruções que foram usadas para criá-la.
+  - Exemplo: `docker history f589ccde7957`
+
+### Criando um Container a partir de uma Imagem
+
+- `docker run <IMAGE_NAME> <COMMAND>`: Cria um container a partir de uma imagem e executa um comando dentro dele.
+  - Exemplo: `docker run -it ubuntu bash`
